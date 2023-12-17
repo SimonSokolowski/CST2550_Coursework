@@ -3,6 +3,7 @@
 
 #include "Member.h"
 #include <string>
+#include <chrono>
 
 enum class bookType {
     ScienceFiction,
@@ -31,7 +32,7 @@ private:
     std::string authorFirstName;
     std::string authorLastName;
     bookType type;
-    // create date class later
+    std::chrono::system_clock::time_point dueDate;
     Member borrower;
 
 public:
@@ -41,8 +42,8 @@ public:
     std::string getbookName() const;
     std::string getAuthotFirstName() const;
     std::string getAuthorLastName() const;
-    // getDueDate
-    // setDueDate
+    std::chrono::system_clock::time_point getDueDate() const;
+    void setDueDate(const std::chrono::system_clock::time_point &dueDate);
     void returnBook();
     void borrowBook();
 
