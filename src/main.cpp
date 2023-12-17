@@ -4,17 +4,15 @@
 #include "Librarian.h"
 #include "Member.h"
 
-int main() {
-    std::vector<Member> members; // Vector to store members
+// Global variable
+std::vector<Member> members; // Vector to store members
 
-    // Prompt the user to create a Librarian object
-    std::cout << "Welcome to the Library System" << std::endl;
-    std::cout << "Please enter the librarian's details:" << std::endl;
-
+Librarian getLibrarianDetails() {
     int staffID;
     std::string name, address, email;
     int salary;
 
+    std::cout << "Please enter the librarian's details:\n";
     std::cout << "Enter staff ID: ";
     std::cin >> staffID;
     std::cin.ignore(); // To consume the newline character left by std::cin
@@ -31,13 +29,16 @@ int main() {
     std::cout << "Enter salary: ";
     std::cin >> salary;
 
-    // Create the Librarian object with the entered details
-    Librarian librarian(staffID, name, address, email, salary);
+    return Librarian(staffID, name, address, email, salary);
+}
 
-    librarian.getStaffID();
+int main() {
 
-    // Now the librarian can perform operations like adding members, issuing books, etc.
-    // ...
+    std::cout << "Welcome to the Library System\n";
+    Librarian librarian = getLibrarianDetails();
+
+    // Display the librarian's staff ID as a confirmation
+    std::cout << "Librarian's Staff ID: " << librarian.getStaffID() << "\n";
 
     return 0;
 }
