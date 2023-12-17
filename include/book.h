@@ -3,7 +3,7 @@
 
 #include <string>
 
-enum class BookType {
+enum class bookType {
     ScienceFiction,
     Satire,
     Drama,
@@ -21,6 +21,30 @@ enum class BookType {
     History,
     Science,
     Art
+};
+
+class Book {
+private:
+    int bookID;
+    std::string bookName;
+    std::string authorFirstName;
+    std::string authorLastName;
+    bookType type;
+    // create date class later
+    // member class later
+
+public:
+    Book(int bookID, const std::string &bookName, const std::string &authorFirstName, const std::string &authorLastName);
+
+    std::string getbookID() const;
+    std::string getbookName() const;
+    std::string getAuthotFirstName() const;
+    std::string getAuthorLastName() const;
+    // getDueDate
+    // setDueDate
+    void returnBook();
+    void borrowBook();
+
 };
 
 #endif
