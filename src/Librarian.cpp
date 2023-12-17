@@ -1,6 +1,9 @@
 #include "Librarian.h"
 #include <iostream>
 
+// Access the global member vector
+std::vector<Member> members;
+
 Librarian::Librarian(int staffID, const std::string &name, const std::string &address, const std::string &email, int salary)
     : Person(), staffID(staffID), salary(salary) {
     setName(name);
@@ -9,7 +12,28 @@ Librarian::Librarian(int staffID, const std::string &name, const std::string &ad
 }
 
 void Librarian::addMember() {
-    // add a new member to the library system
+    int memberID;
+    std::string name, address, email;
+    
+    // Get member details from user input
+    std::cout << "Enter member ID: ";
+    std::cin >> memberID;
+    std::cin.ignore(); // Clear the newline character
+
+    std::cout << "Enter member's name: ";
+    std::getline(std::cin, name);
+
+    std::cout << "Enter member's address: ";
+    std::getline(std::cin, address);
+
+    std::cout << "Enter member's email: ";
+    std::getline(std::cin, email);
+
+    // Create a new Member object and add it to the global vector
+    Member newMember(memberID, name, address, email);
+    members.push_back(newMember);
+
+    std::cout << "New member added successfully.\n";
 }
 
 void Librarian::issueBook(int memberID, int bookID) {

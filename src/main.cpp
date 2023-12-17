@@ -4,9 +4,6 @@
 #include "Librarian.h"
 #include "Member.h"
 
-// Global variable
-std::vector<Member> members; // Vector to store members
-
 Librarian getLibrarianDetails() {
     int staffID;
     std::string name, address, email;
@@ -35,10 +32,15 @@ Librarian getLibrarianDetails() {
 int main() {
 
     std::cout << "Welcome to the Library System\n";
+    
     Librarian librarian = getLibrarianDetails();
 
+    librarian.addMember();
+
     // Display the librarian's staff ID as a confirmation
-    std::cout << "Librarian's Staff ID: " << librarian.getStaffID() << "\n";
+    //std::cout << "Librarian's Staff ID: " << librarian.getStaffID() << "\n";
+
+
 
     return 0;
 }
