@@ -20,4 +20,4 @@ public:
     void setBooksBorrowed(Book *book);
 };
 
-#endif
+#endif // MEMBER_H

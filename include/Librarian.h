@@ -24,4 +24,4 @@ public:
     void setSalary(int salary);
 };
 
-#endif
+#endif // LIBRARIAN_H

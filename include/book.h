@@ -48,4 +48,4 @@ public:
 
 };
 
-#endif
+#endif // BOOK_H
