@@ -28,18 +28,22 @@ void Librarian::calcFine(int memberID) {
     // calculate the fine for a member's overdue books
 }
 
+// Getter for StaffID
 int Librarian::getStaffID() {
     return staffID;
 }
 
+// Setter for StaffID
 void Librarian::setStaffID(int newStaffID) {
     staffID = newStaffID;
 }
 
+// Getter for Salary
 int Librarian::getSalary() {
     return salary;
 }
 
+// Setter for Salary
 void Librarian::setSalary(int newSalary) {
     salary = newSalary;
 }
