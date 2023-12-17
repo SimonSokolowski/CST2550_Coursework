@@ -33,7 +33,6 @@ private:
     bookType type;
     // create date class later
     Member borrower;
-    // member class later
 
 public:
     Book(int bookID, const std::string &bookName, const std::string &authorFirstName, const std::string &authorLastName);
