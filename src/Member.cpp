@@ -1,5 +1,7 @@
 #include "Member.h"
 #include "Person.h"
+#include "Book.h"
+#include <string>
 
 Member::Member(int memberID, const std::string &name, const std::string &address, const std::string &email)
     : Person(), memberID(memberID) {

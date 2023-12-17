@@ -1,12 +1,13 @@
 #include "Book.h"
+#include <string>
 
 Book::Book(int bookID, const std::string &bookName, const std::string &authorFirstName, const std::string &authorLastName)
     : bookID(bookID), bookName(bookName), authorFirstName(authorFirstName), authorLastName(authorLastName) {
 }
 
 // Getter for bookID
-int Book::getBookID() const {
-    return bookID;
+std::string Book::getBookID() const {
+    return std::to_string(bookID);
 }
 
 // Getter for bookName

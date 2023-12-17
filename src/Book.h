@@ -1,9 +1,9 @@
 #ifndef BOOK_H
 #define BOOK_H
 
-#include "Member.h"
 #include <string>
 #include <chrono>
+#include "Member.h"
 
 enum class bookType {
     ScienceFiction,
@@ -33,14 +33,14 @@ private:
     std::string authorLastName;
     bookType type;
     std::chrono::system_clock::time_point dueDate;
-    Member borrower;
+    Member *borrower;
 
 public:
     Book(int bookID, const std::string &bookName, const std::string &authorFirstName, const std::string &authorLastName);
 
-    std::string getbookID() const;
-    std::string getbookName() const;
-    std::string getAuthotFirstName() const;
+    std::string getBookID() const;
+    std::string getBookName() const;
+    std::string getAuthorFirstName() const;
     std::string getAuthorLastName() const;
     std::chrono::system_clock::time_point getDueDate() const;
     void setDueDate(const std::chrono::system_clock::time_point &dueDate);

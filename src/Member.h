@@ -2,9 +2,11 @@
 #define MEMBER_H
 
 #include "Person.h"
-#include "Book.h"
 #include <vector>
 #include <string>
+
+// Forward declaration
+class Book;
 
 class Member : public Person {
 private:
