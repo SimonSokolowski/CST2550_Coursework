@@ -23,3 +23,14 @@ std::string Book::getAuthorFirstName() const {
 std::string Book::getAuthorLastName() const {
     return authorLastName;
 }
+
+// Getter for date
+std::chrono::system_clock::time_point Book::getDueDate() const {
+    return dueDate;
+}
+
+// Setter for date
+void Book::setDueDate(const std::chrono::system_clock::time_point &newDueDate) {
+    dueDate = newDueDate;
+}
+
