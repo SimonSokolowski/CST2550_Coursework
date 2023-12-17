@@ -11,13 +11,13 @@ private:
 
 public:
     std::string getName() const;
-    void setName(const std::string& name);
+    void setName(const std::string &name);
 
     std::string getAddress() const;
-    void setAddress(const std::string& address);
+    void setAddress(const std::string &address);
 
     std::string getEmail() const;
-    void setEmail(const std::string& email);
+    void setEmail(const std::string &email);
 };
 
 #endif // PERSON_H
