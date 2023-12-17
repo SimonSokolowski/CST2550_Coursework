@@ -1,7 +1,7 @@
 #include "Librarian.h"
 #include <iostream>
 
-// Access the global member vector
+// Global member vector
 std::vector<Member> members;
 
 Librarian::Librarian(int staffID, const std::string &name, const std::string &address, const std::string &email, int salary)
