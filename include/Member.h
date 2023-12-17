@@ -14,7 +14,7 @@ private:
 public:
     Member(int memberID, const std::string &name, const std::string &address, const std::string &email);
 
-    std::string getMemberID();
+    std::string getMemberID() const;
     
     std::vector<Book*> getBooksBorrowed() const;
     void setBooksBorrowed(Book *book);
