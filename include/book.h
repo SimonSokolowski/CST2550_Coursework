@@ -1,6 +1,7 @@
 #ifndef BOOK_H
 #define BOOK_H
 
+#include "Member.h"
 #include <string>
 
 enum class bookType {
@@ -31,6 +32,7 @@ private:
     std::string authorLastName;
     bookType type;
     // create date class later
+    Member borrower;
     // member class later
 
 public:
