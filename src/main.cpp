@@ -51,17 +51,25 @@ void populateBooks()
     std::string relativePath = "../books/" + fileName;
 
     std::ifstream myfile(relativePath);
+    bool isFirstLine = true;
 
     if (myfile.is_open())
     {
         while (getline(myfile, line))
         {
+            if (isFirstLine)
+            { // Skip the first line
+                isFirstLine = false;
+                continue;
+            }
+
             std::cout << line << '\n';
         }
         myfile.close();
     }
 
-    else {
+    else
+    {
         std::cout << "Unable to open file\n";
     }
 }
@@ -70,6 +78,7 @@ int main()
 {
     populateBooks();
 
+    std::cout << "\n";
     std::cout << "Welcome to the Library System\n";
 
     Librarian librarian = getLibrarianDetails();
