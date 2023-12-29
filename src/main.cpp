@@ -58,7 +58,6 @@ std::stringstream processLine(const std::string &line)
 
 void populateBooks()
 {
-
     // REFERENCE: https://cplusplus.com/doc/tutorial/files/
     // I learnt from and used the code in the above link to read from
     // a file input by the user.
@@ -120,6 +119,7 @@ void populateBooks()
             Book tempBook(bookID, bookName, authorFirstName, authorLastName);
 
             globalBooks.push_back(tempBook);
+            std::cout << "Library has been populated with books from " << fileName << std::endl;
         }
         myfile.close();
     }
@@ -127,6 +127,13 @@ void populateBooks()
     {
         std::cout << "Unable to open file\n";
     }
+}
+
+int currentDay = 1;  // Global variable to track the current day
+
+void advanceDay() {
+    currentDay++;
+    std::cout << "The day has advanced to day: " << currentDay << std::endl;
 }
 
 int main()

@@ -1,8 +1,11 @@
 #include "Librarian.h"
+#include "Member.h"
+#include "Book.h"
 #include <iostream>
 
 // Global member vector
-std::vector<Member> members;
+std::vector<Member> globalMembers;
+extern std::vector<Book> globalBooks;
 
 Librarian::Librarian(int staffID, const std::string &name, const std::string &address, const std::string &email, int salary)
     : Person(), staffID(staffID), salary(salary) {
@@ -31,13 +34,31 @@ void Librarian::addMember() {
 
     // Create a new Member object and add it to the global vector
     Member newMember(memberID, name, address, email);
-    members.push_back(newMember);
+    globalMembers.push_back(newMember);
 
     std::cout << "New member added successfully.\n";
 }
 
 void Librarian::issueBook(int memberID, int bookID) {
-    // issue a book to a member
+    Member* member = nullptr;
+    Book* book = nullptr;
+    /// Find the member by memberID
+    for (auto& m : globalMembers) {
+        if (m.getMemberID() == std::to_string(memberID)) {
+            member = &m;
+            break;
+        }
+    }
+
+    // Find the book by bookID
+    for (auto& b : globalBooks) {
+        if (b.getBookID() == std::to_string(bookID)) {
+            book = &b;
+            break;
+        }
+    }
+
+    std::cout << "adding book" << bookID << "for user " << memberID ;
 }
 
 void Librarian::returnBook(int memberID, int bookID) {

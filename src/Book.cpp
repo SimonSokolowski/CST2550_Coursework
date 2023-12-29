@@ -31,7 +31,7 @@ std::chrono::system_clock::time_point Book::getDueDate() const {
 }
 
 // Setter for date
-void Book::setDueDate(const std::chrono::system_clock::time_point &newDueDate) {
+void Book::setDueDate(const int newDueDate) {
     dueDate = newDueDate;
 }
 
