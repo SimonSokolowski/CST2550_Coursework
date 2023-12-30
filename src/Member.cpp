@@ -21,7 +21,7 @@ void Member::setBooksBorrowed(Book *book) {
 }
 
 // Getter for borrowing books
-std::vector<Book*> Member::getBooksBorrowed() const {
+std::vector<Book*>& Member::getBooksBorrowed() {
     return booksLoaned;
 }
  

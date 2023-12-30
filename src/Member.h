@@ -18,7 +18,7 @@ public:
 
     std::string getMemberID() const;
     
-    std::vector<Book*> getBooksBorrowed() const;
+    std::vector<Book*>& getBooksBorrowed();
     void setBooksBorrowed(Book *book);
 };
 
