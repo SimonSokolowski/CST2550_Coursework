@@ -26,7 +26,7 @@ std::string Book::getAuthorLastName() const {
 }
 
 // Getter for date
-std::chrono::system_clock::time_point Book::getDueDate() const {
+int Book::getDueDate() const {
     return dueDate;
 }
 
