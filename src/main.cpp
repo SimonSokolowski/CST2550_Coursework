@@ -151,8 +151,8 @@ int main()
     Librarian librarian = getLibrarianDetails();
 
     librarian.addMember();
-
-
+    librarian.issueBook(2,2);
+    
 
     // Display the librarian's staff ID as a confirmation
     // std::cout << "Librarian's Staff ID: " << librarian.getStaffID() << "\n";

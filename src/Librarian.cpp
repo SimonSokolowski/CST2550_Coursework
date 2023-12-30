@@ -58,8 +58,14 @@ void Librarian::issueBook(int memberID, int bookID) {
         }
     }
 
-    member->setBooksBorrowed(book); // Add the book to the member's borrowed books
-    std::cout << "Book " << bookID << " issued to member " << memberID << ".\n";
+    // If both member and book are found, add the book to the member's loaned books
+    if (member != nullptr && book != nullptr) {
+        member->setBooksBorrowed(book); // Add the book to the member's borrowed books
+        std::cout << "Book " << bookID << " issued to member " << memberID << ".\n";
+    } else {
+        if (member == nullptr) std::cout << "Member ID " << memberID << " not found.\n";
+        if (book == nullptr) std::cout << "Book ID " << bookID << " not found.\n";
+    }
 }
 
 void Librarian::returnBook(int memberID, int bookID) {
