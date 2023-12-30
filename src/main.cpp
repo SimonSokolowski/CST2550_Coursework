@@ -130,48 +130,101 @@ void populateBooks()
     }
 }
 
-
 int main()
 {
-
-    std::cout << "The current global day is: " << GlobalDay::getDay() << std::endl;
-
-    // Increment the day
-    GlobalDay::incrementDay();
-
-    // Display the new day
-    std::cout << "After incrementing, the global day is: " << GlobalDay::getDay() << std::endl;
-
-
     populateBooks();
 
-    for (const Book &book : globalBooks)
-    {
-        std::cout << "Book ID: " << book.getBookID() << "\n";
-    }
-
-    std::cout << "\n";
     std::cout << "Welcome to the Library System\n";
+    std::cout << "The current day is: " << GlobalDay::getDay() << std::endl;
 
     Librarian librarian = getLibrarianDetails();
+    int choice;
+    bool running = true;
 
-    librarian.addMember();
-    librarian.issueBook(2,2);
-    librarian.issueBook(2,6);
-    std::cout << "the global day is: " << GlobalDay::getDay() << std::endl;
-    GlobalDay::incrementDay();
-    GlobalDay::incrementDay();
-    GlobalDay::incrementDay();
-    GlobalDay::incrementDay();
-    librarian.displayBorrowedBooks(2);
-    librarian.returnBook(2,6);
-    librarian.displayBorrowedBooks(2);
-    std::cout << "After incrementing, the global day is: " << GlobalDay::getDay() << std::endl;
-    librarian.returnBook(2,2);
-    
+    while (running)
+    {
+        std::cout << "\nLibrary Management System\n";
+        std::cout << "1. Add Member\n";
+        std::cout << "2. Issue Book\n";
+        std::cout << "3. Return Book\n";
+        std::cout << "4. Display Member's Borrowed Books\n";
+        std::cout << "5. Calculate Fine\n";
+        std::cout << "6. Progress Day\n";
+        std::cout << "7. Exit\n";
+        std::cout << "Enter your choice: ";
+        std::cin >> choice;
 
-    // Display the librarian's staff ID as a confirmation
-    // std::cout << "Librarian's Staff ID: " << librarian.getStaffID() << "\n";
+        switch (choice)
+        {
+        case 1:
+        {
+            // Add Member
+            librarian.addMember();
+            break;
+        }
+        case 2:
+        {
+            // Issue Book
+            int memberID, bookID;
+            std::cout << "Enter Member ID to issue a book: ";
+            std::cin >> memberID;
+            std::cout << "Enter Book ID to issue: ";
+            std::cin >> bookID;
+            librarian.issueBook(memberID, bookID); // Call the function with the provided IDs
+            break;
+        }
+        case 3:
+        {
+            // Return Book
+            int memberID, bookID;
+            std::cout << "Enter Member ID to return a book: ";
+            std::cin >> memberID;
+            std::cout << "Enter Book ID to return: ";
+            std::cin >> bookID;
+            librarian.returnBook(memberID, bookID); // Call the function with the provided IDs
+            break;
+        }
+        case 4:
+        {
+            // Dispaly The Currently Borrowed Books
+            int memberID;
+            std::cout << "Enter Member ID to display their books: ";
+            std::cin >> memberID;
+            librarian.displayBorrowedBooks(memberID); // Call the function with the provided ID
+            break;
+        }
+        case 5:
+        {
+            // Calculate Fine
+            int memberID;
+            std::cout << "Enter Member ID to calculate fines: ";
+            std::cin >> memberID;
+            librarian.calcFine(memberID); // Call the function with the provided ID
+            break;
+        }
+        case 6:
+        {
+            // Progress Day
+            GlobalDay::incrementDay();
+
+            // Display the new day
+            std::cout << "After incrementing, the global day is: " << GlobalDay::getDay() << std::endl;
+        }
+        case 7:
+        {
+            // Exit the program
+            running = false;
+            std::cout << "Exiting the Library Management System.\n";
+            break;
+        }
+        default:
+        {
+            // Handle invalid choice
+            std::cout << "Invalid choice. Please try again.\n";
+            break;
+        }
+        }
+    }
 
     return 0;
 }
