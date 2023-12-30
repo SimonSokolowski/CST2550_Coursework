@@ -58,7 +58,8 @@ void Librarian::issueBook(int memberID, int bookID) {
         }
     }
 
-    std::cout << "adding book" << bookID << "for user " << memberID ;
+    member->setBooksBorrowed(book); // Add the book to the member's borrowed books
+    std::cout << "Book " << bookID << " issued to member " << memberID << ".\n";
 }
 
 void Librarian::returnBook(int memberID, int bookID) {
