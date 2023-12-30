@@ -152,6 +152,8 @@ int main()
 
     librarian.addMember();
     librarian.issueBook(2,2);
+    librarian.issueBook(2,6);
+    librarian.displayBorrowedBooks(2);
     
 
     // Display the librarian's staff ID as a confirmation

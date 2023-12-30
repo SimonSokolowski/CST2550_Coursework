@@ -98,6 +98,23 @@ void Librarian::displayBorrowedBooks(int memberID) {
             break;
         }
     }
+
+    // If the member is found, display their borrowed books
+    if (member != nullptr) {
+        std::vector<Book*> borrowedBooks = member->getBooksBorrowed();
+        if (borrowedBooks.empty()) {
+            std::cout << "Member " << memberID << " has no borrowed books.\n";
+        } else {
+            for (Book* book : borrowedBooks) {
+                if (book != nullptr) {
+                    std::cout << "Book ID: " << book->getBookID();
+                }
+            }
+        }
+    } else {
+        std::cout << "No member found with ID " << memberID << ".\n";
+    }
+
 }
 
 void Librarian::calcFine(int memberID) {
