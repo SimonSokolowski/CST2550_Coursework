@@ -75,6 +75,7 @@ void Librarian::issueBook(int memberID, int bookID)
 
         member->setBooksBorrowed(book); // Add the book to the member's borrowed books
         std::cout << "Book " << bookID << " issued to member " << memberID << ".\n";
+        std::cout << "The due date is day " << book->getDueDate() << ".\n";
     }
     else
     {
@@ -120,6 +121,8 @@ void Librarian::returnBook(int memberID, int bookID)
             calcFine(memberID);
             booksLoaned.erase(bookIter); // Remove the book from the vector
             std::cout << "Book " << bookID << " returned successfully by member " << memberID << ".\n";
+            std::cout << "The book was returned on day " << GlobalDay::getDay() << ".\n";
+        
         }
         else
         {
