@@ -129,11 +129,11 @@ void populateBooks()
     }
 }
 
-int currentDay = 1;  // Global variable to track the current day
+int globalDay = 1;  // Global variable to track the current day
 
 void advanceDay() {
-    currentDay++;
-    std::cout << "The day has advanced to day: " << currentDay << std::endl;
+    globalDay++;
+    std::cout << "The day has advanced to day: " << globalDay << std::endl;
 }
 
 int main()
