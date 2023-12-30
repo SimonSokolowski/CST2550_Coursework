@@ -154,6 +154,9 @@ int main()
     librarian.issueBook(2,2);
     librarian.issueBook(2,6);
     librarian.displayBorrowedBooks(2);
+    librarian.returnBook(2,6);
+    librarian.displayBorrowedBooks(2);
+    librarian.returnBook(2,6);
     
 
     // Display the librarian's staff ID as a confirmation
