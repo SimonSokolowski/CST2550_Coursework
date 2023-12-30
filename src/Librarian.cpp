@@ -69,15 +69,47 @@ void Librarian::issueBook(int memberID, int bookID) {
 }
 
 void Librarian::returnBook(int memberID, int bookID) {
-    // process the return of a book from a member
+    Member* member = nullptr;
+    Book* book = nullptr;
+    /// Find the member by memberID
+    for (auto& m : globalMembers) {
+        if (m.getMemberID() == std::to_string(memberID)) {
+            member = &m;
+            break;
+        }
+    }
+
+    // Find the book by bookID
+    for (auto& b : globalBooks) {
+        if (b.getBookID() == std::to_string(bookID)) {
+            book = &b;
+            break;
+        }
+    }
 }
 
 void Librarian::displayBorrowedBooks(int memberID) {
-    // display all books borrowed by a member
+    Member* member = nullptr;
+    Book* book = nullptr;
+    /// Find the member by memberID
+    for (auto& m : globalMembers) {
+        if (m.getMemberID() == std::to_string(memberID)) {
+            member = &m;
+            break;
+        }
+    }
 }
 
 void Librarian::calcFine(int memberID) {
-    // calculate the fine for a member's overdue books
+    Member* member = nullptr;
+    Book* book = nullptr;
+    /// Find the member by memberID
+    for (auto& m : globalMembers) {
+        if (m.getMemberID() == std::to_string(memberID)) {
+            member = &m;
+            break;
+        }
+    }
 }
 
 // Getter for StaffID
