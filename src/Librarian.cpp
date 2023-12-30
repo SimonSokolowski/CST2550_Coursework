@@ -1,6 +1,7 @@
 #include "Librarian.h"
 #include "Member.h"
 #include "Book.h"
+#include "GlobalDay.h"
 #include <iostream>
 #include <algorithm>
 
@@ -69,6 +70,9 @@ void Librarian::issueBook(int memberID, int bookID)
     // If both member and book are found, add the book to the member's loaned books
     if (member != nullptr && book != nullptr)
     {
+        // Set the due date for the book as current global day plus 3
+        book->setDueDate(GlobalDay::getDay() + 3);
+
         member->setBooksBorrowed(book); // Add the book to the member's borrowed books
         std::cout << "Book " << bookID << " issued to member " << memberID << ".\n";
     }
@@ -110,10 +114,11 @@ void Librarian::returnBook(int memberID, int bookID)
     {
         // Retrieve a reference to the users' collection of loaned books
         auto &booksLoaned = member->getBooksBorrowed();
-        auto it = std::find(booksLoaned.begin(), booksLoaned.end(), book);
-        if (it != booksLoaned.end())
+        auto bookIter = std::find(booksLoaned.begin(), booksLoaned.end(), book);
+        if (bookIter != booksLoaned.end())
         {
-            booksLoaned.erase(it); // Remove the book from the vector
+            calcFine(memberID);
+            booksLoaned.erase(bookIter); // Remove the book from the vector
             std::cout << "Book " << bookID << " returned successfully by member " << memberID << ".\n";
         }
         else
@@ -175,8 +180,7 @@ void Librarian::displayBorrowedBooks(int memberID)
 void Librarian::calcFine(int memberID)
 {
     Member *member = nullptr;
-    Book *book = nullptr;
-    /// Find the member by memberID
+    // Find the member by memberID
     for (auto &m : globalMembers)
     {
         if (m.getMemberID() == std::to_string(memberID))
@@ -184,6 +188,38 @@ void Librarian::calcFine(int memberID)
             member = &m;
             break;
         }
+    }
+
+    // If member is found, calculate fines
+    if (member != nullptr)
+    {
+        auto &borrowedBooks = member->getBooksBorrowed();
+        int totalFine = 0;
+        int currentDay = GlobalDay::getDay();
+
+        for (Book *book : borrowedBooks)
+        {
+            int dueDate = book->getDueDate();
+            if (currentDay > dueDate) // Book is overdue
+            {
+                int daysLate = currentDay - dueDate;
+                totalFine += daysLate; // Assuming the fine is 1 unit per day late
+            }
+        }
+
+        // Output the total fine for the member
+        if (totalFine > 0)
+        {
+            std::cout << "Member " << memberID << " has a total fine of " << totalFine << " for late books.\n";
+        }
+        else
+        {
+            std::cout << "Member " << memberID << " has no fines for late books.\n";
+        }
+    }
+    else
+    {
+        std::cout << "Member ID " << memberID << " not found.\n";
     }
 }
 

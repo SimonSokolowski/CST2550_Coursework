@@ -7,6 +7,7 @@
 #include "Librarian.h"
 #include "Member.h"
 #include "Book.h"
+#include "GlobalDay.h"
 
 std::vector<Book> globalBooks; // Global vector to store books
 
@@ -129,15 +130,19 @@ void populateBooks()
     }
 }
 
-int globalDay = 1;  // Global variable to track the current day
-
-void advanceDay() {
-    globalDay++;
-    std::cout << "The day has advanced to day: " << globalDay << std::endl;
-}
 
 int main()
 {
+
+    std::cout << "The current global day is: " << GlobalDay::getDay() << std::endl;
+
+    // Increment the day
+    GlobalDay::incrementDay();
+
+    // Display the new day
+    std::cout << "After incrementing, the global day is: " << GlobalDay::getDay() << std::endl;
+
+
     populateBooks();
 
     for (const Book &book : globalBooks)
@@ -153,10 +158,16 @@ int main()
     librarian.addMember();
     librarian.issueBook(2,2);
     librarian.issueBook(2,6);
+    std::cout << "the global day is: " << GlobalDay::getDay() << std::endl;
+    GlobalDay::incrementDay();
+    GlobalDay::incrementDay();
+    GlobalDay::incrementDay();
+    GlobalDay::incrementDay();
     librarian.displayBorrowedBooks(2);
     librarian.returnBook(2,6);
     librarian.displayBorrowedBooks(2);
-    librarian.returnBook(2,6);
+    std::cout << "After incrementing, the global day is: " << GlobalDay::getDay() << std::endl;
+    librarian.returnBook(2,2);
     
 
     // Display the librarian's staff ID as a confirmation
