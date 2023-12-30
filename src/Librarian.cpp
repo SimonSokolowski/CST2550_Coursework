@@ -105,9 +105,12 @@ void Librarian::displayBorrowedBooks(int memberID) {
         if (borrowedBooks.empty()) {
             std::cout << "Member " << memberID << " has no borrowed books.\n";
         } else {
+            std::cout << "Member " << memberID << " has borrowed the following books:\n";
             for (Book* book : borrowedBooks) {
                 if (book != nullptr) {
-                    std::cout << "Book ID: " << book->getBookID();
+                    // Assuming Book class has methods like getTitle() to get book details
+                    std::cout << "Book ID: " << book->getBookID()
+                              << ", Title: " << book->getBookName() << "\n";
                 }
             }
         }
