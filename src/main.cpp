@@ -19,10 +19,9 @@ Librarian getLibrarianDetails()
     int salary;
 
     std::cout << "Please enter the librarian's details:\n";
-    std::cout << "Enter staff ID: ";
-    std::cin >> staffID;
-    std::cin.ignore(); // To consume the newline character left by std::cin
 
+    staffID = Utility::getIntegerInput("Enter staff ID: ");
+    
     std::cout << "Enter name: ";
     std::getline(std::cin, name);
 
@@ -32,8 +31,7 @@ Librarian getLibrarianDetails()
     std::cout << "Enter email: ";
     std::getline(std::cin, email);
 
-    std::cout << "Enter salary: ";
-    std::cin >> salary;
+    salary = Utility::getIntegerInput("Enter salary: ");
 
     return Librarian(staffID, name, address, email, salary);
 }
