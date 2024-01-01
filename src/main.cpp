@@ -202,6 +202,7 @@ int main()
 
             // Display the new day
             std::cout << "After incrementing, the global day is: " << Utility::getDay() << std::endl;
+            break;
         }
         case 7:
         {
