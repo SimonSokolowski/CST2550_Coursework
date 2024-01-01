@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include <algorithm>
+#include<limits>
 #include "Librarian.h"
 #include "Member.h"
 #include "Book.h"
@@ -95,7 +96,6 @@ void populateBooks()
 
             getline(linestream, value, ',');
             bookID = std::stoi(value);
-            std::cout << "Book ID: " << bookID << std::endl;
 
             getline(linestream, bookName, ',');
 
@@ -120,7 +120,6 @@ void populateBooks()
             Book tempBook(bookID, bookName, authorFirstName, authorLastName);
 
             globalBooks.push_back(tempBook);
-            std::cout << "Library has been populated with books from " << fileName << std::endl;
         }
         myfile.close();
     }
@@ -130,12 +129,30 @@ void populateBooks()
     }
 }
 
+// REFERENCE https://www.hackerearth.com/practice/notes/validating-user-input-in-c/#:~:text=When%20the%20user%20input%20is,statement%20to%20test%20its%20status.&text=From%20the%20above%20example%2C%20the,ignore()%2C%20etc.
+int getIntegerInput(const std::string& prompt) {
+    int input;
+    while (true) {
+        std::cout << prompt;
+        std::cin >> input;
+
+        if (std::cin.fail()) {
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cout << "Invalid input, enter an integer. ";
+        } else {
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            return input;
+        }
+    }
+}
+
 int main()
 {
     populateBooks();
 
     std::cout << "Welcome to the Library System\n";
-    std::cout << "The current day is: " << GlobalDay::getDay() << std::endl;
+    std::cout << "The current day is: " << GlobalDay::getDay() << "\n";
 
     Librarian librarian = getLibrarianDetails();
     int choice;
@@ -151,9 +168,9 @@ int main()
         std::cout << "5. Calculate Fine\n";
         std::cout << "6. Progress Day\n";
         std::cout << "7. Exit\n";
-        std::cout << "Enter your choice: ";
-        std::cin >> choice;
-
+        
+        int choice = getIntegerInput("Please enter your choice: ");
+    
         switch (choice)
         {
         case 1:
