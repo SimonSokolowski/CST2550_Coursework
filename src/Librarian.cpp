@@ -1,7 +1,7 @@
 #include "Librarian.h"
 #include "Member.h"
 #include "Book.h"
-#include "GlobalDay.h"
+#include "Utility.h"
 #include <iostream>
 #include <algorithm>
 
@@ -23,9 +23,7 @@ void Librarian::addMember()
     std::string name, address, email;
 
     // Get member details from user input
-    std::cout << "Enter member ID: ";
-    std::cin >> memberID;
-    std::cin.ignore(); // Clear the newline character
+    memberID = Utility::getIntegerInput("Enter Member ID: ");
 
     std::cout << "Enter member's name: ";
     std::getline(std::cin, name);
@@ -71,7 +69,7 @@ void Librarian::issueBook(int memberID, int bookID)
     if (member != nullptr && book != nullptr)
     {
         // Set the due date for the book as current global day plus 3
-        book->setDueDate(GlobalDay::getDay() + 3);
+        book->setDueDate(Utility::getDay() + 3);
 
         member->setBooksBorrowed(book); // Add the book to the member's borrowed books
         std::cout << "Book " << bookID << " issued to member " << memberID << ".\n";
@@ -121,7 +119,7 @@ void Librarian::returnBook(int memberID, int bookID)
             calcFine(memberID);
             booksLoaned.erase(bookIter); // Remove the book from the vector
             std::cout << "Book " << bookID << " returned successfully by member " << memberID << ".\n";
-            std::cout << "The book was returned on day " << GlobalDay::getDay() << ".\n";
+            std::cout << "The book was returned on day " << Utility::getDay() << ".\n";
         
         }
         else
@@ -198,7 +196,7 @@ void Librarian::calcFine(int memberID)
     {
         auto &borrowedBooks = member->getBooksBorrowed();
         int totalFine = 0;
-        int currentDay = GlobalDay::getDay();
+        int currentDay = Utility::getDay();
 
         for (Book *book : borrowedBooks)
         {

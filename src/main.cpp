@@ -8,7 +8,7 @@
 #include "Librarian.h"
 #include "Member.h"
 #include "Book.h"
-#include "GlobalDay.h"
+#include "Utility.h"
 
 std::vector<Book> globalBooks; // Global vector to store books
 
@@ -129,30 +129,12 @@ void populateBooks()
     }
 }
 
-// REFERENCE https://www.hackerearth.com/practice/notes/validating-user-input-in-c/#:~:text=When%20the%20user%20input%20is,statement%20to%20test%20its%20status.&text=From%20the%20above%20example%2C%20the,ignore()%2C%20etc.
-int getIntegerInput(const std::string& prompt) {
-    int input;
-    while (true) {
-        std::cout << prompt;
-        std::cin >> input;
-
-        if (std::cin.fail()) {
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            std::cout << "Invalid input, enter an integer. ";
-        } else {
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            return input;
-        }
-    }
-}
-
 int main()
 {
     populateBooks();
 
     std::cout << "Welcome to the Library System\n";
-    std::cout << "The current day is: " << GlobalDay::getDay() << "\n";
+    std::cout << "The current day is: " << Utility::getDay() << "\n";
 
     Librarian librarian = getLibrarianDetails();
     int choice;
@@ -169,7 +151,7 @@ int main()
         std::cout << "6. Progress Day\n";
         std::cout << "7. Exit\n";
         
-        int choice = getIntegerInput("Please enter your choice: ");
+        choice = Utility::getIntegerInput("Please enter your choice: ");
     
         switch (choice)
         {
@@ -183,10 +165,8 @@ int main()
         {
             // Issue Book
             int memberID, bookID;
-            std::cout << "Enter Member ID to issue a book: ";
-            std::cin >> memberID;
-            std::cout << "Enter Book ID to issue: ";
-            std::cin >> bookID;
+            memberID = Utility::getIntegerInput("Enter Member ID to issue a book: ");
+            bookID = Utility::getIntegerInput("Enter Book ID to issue: ");
             librarian.issueBook(memberID, bookID); // Call the function with the provided IDs
             break;
         }
@@ -194,10 +174,8 @@ int main()
         {
             // Return Book
             int memberID, bookID;
-            std::cout << "Enter Member ID to return a book: ";
-            std::cin >> memberID;
-            std::cout << "Enter Book ID to return: ";
-            std::cin >> bookID;
+            memberID = Utility::getIntegerInput("Enter Member ID to return a book: ");
+            bookID = Utility::getIntegerInput("Enter Book ID to return: ");
             librarian.returnBook(memberID, bookID); // Call the function with the provided IDs
             break;
         }
@@ -205,8 +183,7 @@ int main()
         {
             // Dispaly The Currently Borrowed Books
             int memberID;
-            std::cout << "Enter Member ID to display their books: ";
-            std::cin >> memberID;
+            memberID = Utility::getIntegerInput("Enter Member ID to display their books: ");
             librarian.displayBorrowedBooks(memberID); // Call the function with the provided ID
             break;
         }
@@ -214,18 +191,17 @@ int main()
         {
             // Calculate Fine
             int memberID;
-            std::cout << "Enter Member ID to calculate fines: ";
-            std::cin >> memberID;
+            memberID = Utility::getIntegerInput("Enter Member ID to calculate fines: ");
             librarian.calcFine(memberID); // Call the function with the provided ID
             break;
         }
         case 6:
         {
             // Progress Day
-            GlobalDay::incrementDay();
+            Utility::incrementDay();
 
             // Display the new day
-            std::cout << "After incrementing, the global day is: " << GlobalDay::getDay() << std::endl;
+            std::cout << "After incrementing, the global day is: " << Utility::getDay() << std::endl;
         }
         case 7:
         {
