@@ -139,7 +139,6 @@ void Librarian::returnBook(int memberID, int bookID)
 void Librarian::displayBorrowedBooks(int memberID)
 {
     Member *member = nullptr;
-    Book *book = nullptr;
     /// Find the member by memberID
     for (auto &m : globalMembers)
     {

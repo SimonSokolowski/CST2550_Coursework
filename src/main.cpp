@@ -88,7 +88,7 @@ void populateBooks()
 
             std::stringstream linestream = processLine(line);
 
-            int bookID, pageCount;
+            int bookID;
             std::string bookName, authorFirstName, authorLastName, bookType;
             std::string value;
 
@@ -101,7 +101,6 @@ void populateBooks()
             std::replace(bookName.begin(), bookName.end(), '|', ',');
 
             getline(linestream, value, ',');
-            pageCount = std::stoi(value);
             getline(linestream, authorFirstName, ',');
             getline(linestream, authorLastName, ',');
             getline(linestream, bookType);
