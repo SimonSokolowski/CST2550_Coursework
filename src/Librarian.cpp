@@ -38,6 +38,7 @@ void Librarian::addMember()
     Member newMember(memberID, name, address, email);
     globalMembers.push_back(newMember);
 
+    std::cout << "\n";
     std::cout << "New member added successfully.\n";
 }
 
@@ -72,11 +73,13 @@ void Librarian::issueBook(int memberID, int bookID)
         book->setDueDate(Utility::getDay() + 3);
 
         member->setBooksBorrowed(book); // Add the book to the member's borrowed books
+        std::cout << "\n";
         std::cout << "Book " << bookID << " issued to member " << memberID << ".\n";
         std::cout << "The due date is day " << book->getDueDate() << ".\n";
     }
     else
     {
+        std::cout << "\n";
         if (member == nullptr)
             std::cout << "Member ID " << memberID << " not found.\n";
         if (book == nullptr)

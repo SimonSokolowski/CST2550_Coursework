@@ -131,8 +131,10 @@ int main()
 {
     populateBooks();
 
+    std::cout << "\n";
     std::cout << "Welcome to the Library System\n";
     std::cout << "The current day is: " << Utility::getDay() << "\n";
+    std::cout << "\n";
 
     Librarian librarian = getLibrarianDetails();
     int choice;
@@ -163,6 +165,7 @@ int main()
         {
             // Issue Book
             int memberID, bookID;
+            std::cout << "\n";
             memberID = Utility::getIntegerInput("Enter Member ID to issue a book: ");
             bookID = Utility::getIntegerInput("Enter Book ID to issue: ");
             librarian.issueBook(memberID, bookID); // Call the function with the provided IDs
@@ -172,6 +175,7 @@ int main()
         {
             // Return Book
             int memberID, bookID;
+            std::cout << "\n";
             memberID = Utility::getIntegerInput("Enter Member ID to return a book: ");
             bookID = Utility::getIntegerInput("Enter Book ID to return: ");
             librarian.returnBook(memberID, bookID); // Call the function with the provided IDs
@@ -181,6 +185,7 @@ int main()
         {
             // Dispaly The Currently Borrowed Books
             int memberID;
+            std::cout << "\n";
             memberID = Utility::getIntegerInput("Enter Member ID to display their books: ");
             librarian.displayBorrowedBooks(memberID); // Call the function with the provided ID
             break;
@@ -189,6 +194,7 @@ int main()
         {
             // Calculate Fine
             int memberID;
+            std::cout << "\n";
             memberID = Utility::getIntegerInput("Enter Member ID to calculate fines: ");
             librarian.calcFine(memberID); // Call the function with the provided ID
             break;
@@ -199,6 +205,7 @@ int main()
             Utility::incrementDay();
 
             // Display the new day
+            std::cout << "\n";
             std::cout << "After incrementing, the global day is: " << Utility::getDay() << std::endl;
             break;
         }
@@ -212,6 +219,7 @@ int main()
         default:
         {
             // Handle invalid choice
+            std::cout << "\n";
             std::cout << "Invalid choice. Please try again.\n";
             break;
         }
