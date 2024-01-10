@@ -48,3 +48,28 @@ TEST_CASE("Librarian Class Tests", "[Librarian]") {
     }
 
 }
+
+TEST_CASE("Calculate Fine Test", "[Librarian]") {
+    setupTestEnvironment();
+    Librarian librarian(1, "Test Librarian", "123 Library Lane", "librarian@example.com", 3000);
+
+    // Issue a book and set the due date in the past
+    librarian.issueBook(1, 1);
+    Book& borrowedBook = *globalMembers.front().getBooksBorrowed().front();
+    borrowedBook.setDueDate(Utility::getDay() - 5); // Set due date to 5 days ago
+
+    // Redirect std::cout to a stringstream
+    std::stringstream buffer;
+    std::streambuf* prevCoutbuf = std::cout.rdbuf(buffer.rdbuf());
+
+    // Calculate fine
+    librarian.calcFine(1);
+
+    // Reset std::cout to its original buffer
+    std::cout.rdbuf(prevCoutbuf);
+
+    // Extract and verify the output
+    std::string output = buffer.str();
+    std::string expectedOutput = "Member 1 has a total fine of 5 for late books.";
+    REQUIRE(output.find(expectedOutput) != std::string::npos);
+}
