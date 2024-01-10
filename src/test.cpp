@@ -11,7 +11,9 @@
 extern std::vector<Member> globalMembers;
 extern std::vector<Book> globalBooks;
 
-void setupTestEnvironment() {
+// Setup the test environment to allow running of test cases without user input
+void setupTestEnvironment()
+{
     // Clear existing members and books
     globalMembers.clear();
     globalBooks.clear();
@@ -25,11 +27,14 @@ void setupTestEnvironment() {
     globalBooks.push_back(testBook);
 }
 
-TEST_CASE("Librarian Class Tests", "[Librarian]") {
+// Issue book and Return book tests
+TEST_CASE("Issue and Return Tests", "[Librarian]")
+{
     setupTestEnvironment(); // Setup test environment
     Librarian librarian(1, "Test Librarian", "123 Library Lane", "librarian@example.com", 3000);
 
-    SECTION("Issue Book Test") {
+    SECTION("Issue Book Test")
+    {
         // Issue a book to the test member
         librarian.issueBook(1, 1);
 
@@ -37,7 +42,8 @@ TEST_CASE("Librarian Class Tests", "[Librarian]") {
         REQUIRE(!globalMembers.front().getBooksBorrowed().empty());
     }
 
-    SECTION("Return Book Test") {
+    SECTION("Return Book Test")
+    {
         // First issue a book
         librarian.issueBook(1, 1);
         // Attempt to return book
@@ -46,21 +52,33 @@ TEST_CASE("Librarian Class Tests", "[Librarian]") {
         // Check if the book was returned
         REQUIRE(globalMembers.front().getBooksBorrowed().empty());
     }
-
 }
 
-TEST_CASE("Calculate Fine Test", "[Librarian]") {
+TEST_CASE("Issue Non-Existent Book Test", "[Librarian]") {
+    setupTestEnvironment(); // Setup test environment
+    Librarian librarian(1, "Test Librarian", "123 Library Lane", "librarian@example.com", 3000);
+
+    // Attempt to issue a non-existent book
+    librarian.issueBook(1, 2);
+
+    // Check if the book was not issued (member's borrowed books list should still be empty)
+    REQUIRE(globalMembers.front().getBooksBorrowed().empty());
+}
+
+// Calculate Fine test
+TEST_CASE("Calculate Fine Test", "[Librarian]")
+{
     setupTestEnvironment();
     Librarian librarian(1, "Test Librarian", "123 Library Lane", "librarian@example.com", 3000);
 
     // Issue a book and set the due date in the past
     librarian.issueBook(1, 1);
-    Book& borrowedBook = *globalMembers.front().getBooksBorrowed().front();
+    Book &borrowedBook = *globalMembers.front().getBooksBorrowed().front();
     borrowedBook.setDueDate(Utility::getDay() - 5); // Set due date to 5 days ago
 
     // Redirect std::cout to a stringstream
     std::stringstream buffer;
-    std::streambuf* prevCoutbuf = std::cout.rdbuf(buffer.rdbuf());
+    std::streambuf *prevCoutbuf = std::cout.rdbuf(buffer.rdbuf());
 
     // Calculate fine
     librarian.calcFine(1);
