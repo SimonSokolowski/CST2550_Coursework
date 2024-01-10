@@ -125,7 +125,7 @@ void populateBooks()
         std::cout << "Unable to open file\n";
     }
 }
-
+#ifndef TESTING
 int main()
 {
     populateBooks();
@@ -219,3 +219,4 @@ int main()
 
     return 0;
 }
+#endif

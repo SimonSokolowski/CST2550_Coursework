@@ -5,6 +5,8 @@
 #include "Book.h"
 #include "Utility.h"
 #include <vector>
+#define TESTING
+#include "main.cpp"
 
 extern std::vector<Member> globalMembers;
 extern std::vector<Book> globalBooks;

@@ -19,7 +19,7 @@ all: $(EXEC)
 $(EXEC): $(OBJECTS)
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
-test: $(TEST_OBJECTS) $(OBJECTS)
+test: $(TEST_OBJECTS) Librarian.o Member.o Book.o Utility.o Person.o
 	$(CXX) $(CXXFLAGS) -o $(TEST_EXEC) $^
 
 # Rule for building object files
