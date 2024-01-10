@@ -120,8 +120,7 @@ void Librarian::returnBook(int memberID, int bookID)
             booksLoaned.erase(bookIter); // Remove the book from the vector
             std::cout << "Book " << bookID << " returned successfully by member " << memberID << ".\n";
             std::cout << "The book was returned on day " << Utility::getDay() << ".\n";
-        
-        }
+                }
         else
         {
             std::cout << "Book " << bookID << " not found in member " << memberID << "'s borrowed books.\n";

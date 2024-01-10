@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 #include <algorithm>
-#include<limits>
+#include <limits>
 #include "Librarian.h"
 #include "Member.h"
 #include "Book.h"
@@ -21,7 +21,7 @@ Librarian getLibrarianDetails()
     std::cout << "Please enter the librarian's details:\n";
 
     staffID = Utility::getIntegerInput("Enter staff ID: ");
-    
+
     std::cout << "Enter name: ";
     std::getline(std::cin, name);
 
@@ -125,6 +125,7 @@ void populateBooks()
         std::cout << "Unable to open file\n";
     }
 }
+
 #ifndef TESTING
 int main()
 {
@@ -147,9 +148,9 @@ int main()
         std::cout << "5. Calculate Fine\n";
         std::cout << "6. Progress Day\n";
         std::cout << "7. Exit\n";
-        
+
         choice = Utility::getIntegerInput("Please enter your choice: ");
-    
+
         switch (choice)
         {
         case 1:

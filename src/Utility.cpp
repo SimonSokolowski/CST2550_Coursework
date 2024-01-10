@@ -13,17 +13,22 @@ void Utility::incrementDay()
 }
 
 // REFERENCE https://www.hackerearth.com/practice/notes/validating-user-input-in-c/#:~:text=When%20the%20user%20input%20is,statement%20to%20test%20its%20status.&text=From%20the%20above%20example%2C%20the,ignore()%2C%20etc.
-int Utility::getIntegerInput(const std::string& prompt) {
+int Utility::getIntegerInput(const std::string &prompt)
+{
     int choice;
-    while (true) {
+    while (true)
+    {
         std::cout << prompt;
         std::cin >> choice;
 
-        if (std::cin.fail()) {
+        if (std::cin.fail())
+        {
             std::cin.clear();
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             std::cout << "Invalid input, please enter an integer. ";
-        } else {
+        }
+        else
+        {
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             return choice;
         }

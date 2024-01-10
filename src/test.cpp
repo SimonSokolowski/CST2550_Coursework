@@ -54,7 +54,8 @@ TEST_CASE("Issue and Return Tests", "[Librarian]")
     }
 }
 
-TEST_CASE("Issue Non-Existent Book Test", "[Librarian]") {
+TEST_CASE("Issue Non-Existent Book Test", "[Librarian]")
+{
     setupTestEnvironment(); // Setup test environment
     Librarian librarian(1, "Test Librarian", "123 Library Lane", "librarian@example.com", 3000);
 

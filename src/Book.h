@@ -4,7 +4,8 @@
 #include <string>
 #include "Member.h"
 
-enum class bookType {
+enum class bookType
+{
     ScienceFiction,
     Satire,
     Drama,
@@ -24,7 +25,8 @@ enum class bookType {
     Art
 };
 
-class Book {
+class Book
+{
 private:
     int bookID;
     std::string bookName;
@@ -45,7 +47,6 @@ public:
     void setDueDate(const int dueDate);
     void returnBook();
     void borrowBook();
-
 };
 
 #endif // BOOK_H

@@ -4,7 +4,8 @@
 #include "Person.h"
 #include "Book.h"
 
-class Librarian : public Person {
+class Librarian : public Person
+{
 private:
     int staffID;
     int salary;
@@ -17,7 +18,7 @@ public:
     void returnBook(int memberID, int bookID);
     void displayBorrowedBooks(int memberID);
     void calcFine(int memberID);
-    
+
     int getStaffID();
     void setStaffID(int staffID);
     int getSalary();
