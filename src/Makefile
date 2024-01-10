@@ -17,15 +17,15 @@ TEST_OBJECTS = $(TEST_SOURCES:.cpp=.o)
 all: $(EXEC)
 
 $(EXEC): $(OBJECTS)
-    $(CXX) $(CXXFLAGS) -o $@ $^
+	$(CXX) $(CXXFLAGS) -o $@ $^
 
 test: $(TEST_OBJECTS) $(OBJECTS)
-    $(CXX) $(CXXFLAGS) -o $(TEST_EXEC) $^
+	$(CXX) $(CXXFLAGS) -o $(TEST_EXEC) $^
 
 # Rule for building object files
 %.o: %.cpp
-    $(CXX) $(CXXFLAGS) -c $<
+	$(CXX) $(CXXFLAGS) -c $<
 
 # Clean rule
 clean:
-    rm -f $(OBJECTS) $(EXEC) $(TEST_OBJECTS) $(TEST_EXEC)
+	rm -f $(OBJECTS) $(EXEC) $(TEST_OBJECTS) $(TEST_EXEC)
